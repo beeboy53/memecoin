@@ -1,7 +1,7 @@
 import os
 import threading
 from flask import Flask
-from bot import main as start_bot
+from bot import start   # <-- correct function
 
 app = Flask(__name__)
 
@@ -11,11 +11,10 @@ def home():
 
 
 def run_bot():
-    start_bot()
+    start()   # <-- correct call
 
 
-# start telegram bot in background thread
-threading.Thread(target=run_bot).start()
+threading.Thread(target=run_bot, daemon=True).start()
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
