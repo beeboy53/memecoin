@@ -1,9 +1,10 @@
 import os
 import threading
 from flask import Flask
-from bot import start   # <-- correct function
+from bot import start
 
 app = Flask(__name__)
+
 
 @app.route("/")
 def home():
@@ -11,10 +12,11 @@ def home():
 
 
 def run_bot():
-    start()   # <-- correct call
+    start()
 
 
 threading.Thread(target=run_bot, daemon=True).start()
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
